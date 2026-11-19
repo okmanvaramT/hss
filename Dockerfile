@@ -1,5 +1,4 @@
 
-
 FROM alpine:3.22
 
 RUN apk add --no-cache openssh-server shadow \
@@ -9,8 +8,9 @@ RUN apk add --no-cache openssh-server shadow \
 COPY sshd_config /etc/ssh/sshd_config
 COPY entrypoint.sh /entrypoint.sh
 
-RUN chmod +x /entrypoint.sh
+RUN sed -i 's/\r$//' /entrypoint.sh \
+    && chmod +x /entrypoint.sh
 
 EXPOSE 2222
 
-CMD ["/entrypoint.sh"]
+CMD ["/bin/sh", "/entrypoint.sh"]
