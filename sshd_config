@@ -1,9 +1,21 @@
-
 Port 2222
+AddressFamily any
 ListenAddress 0.0.0.0
+
 PermitRootLogin no
 PasswordAuthentication yes
 KbdInteractiveAuthentication no
-UsePAM no
+PubkeyAuthentication yes
+PermitEmptyPasswords no
+
 AllowUsers vpnuser
+
+AllowTcpForwarding yes
+GatewayPorts no
+PermitTunnel no
+
+X11Forwarding no
+ClientAliveInterval 60
+ClientAliveCountMax 3
+
 Subsystem sftp internal-sftp
